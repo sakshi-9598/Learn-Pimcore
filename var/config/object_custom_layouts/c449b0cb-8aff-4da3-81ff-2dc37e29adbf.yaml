@@ -1,0 +1,122 @@
+pimcore:
+    objects:
+        custom_layouts:
+            definitions:
+                c449b0cb-8aff-4da3-81ff-2dc37e29adbf:
+                    id: c449b0cb-8aff-4da3-81ff-2dc37e29adbf
+                    name: WholesaleAndRetailer
+                    description: ''
+                    creationDate: 1702021484
+                    modificationDate: 1702021527
+                    userOwner: 2
+                    classId: store
+                    layoutDefinitions:
+                        name: pimcore_root
+                        type: null
+                        region: null
+                        title: null
+                        width: 0
+                        height: 0
+                        collapsible: false
+                        collapsed: false
+                        bodyStyle: null
+                        datatype: layout
+                        children:
+                            -
+                                name: 'Store Information'
+                                type: null
+                                region: null
+                                title: 'Store Information'
+                                width: ''
+                                height: ''
+                                collapsible: false
+                                collapsed: false
+                                bodyStyle: ''
+                                datatype: layout
+                                children:
+                                    -
+                                        name: StoreName
+                                        title: 'Store Name'
+                                        tooltip: 'Name of the Store'
+                                        mandatory: true
+                                        noteditable: true
+                                        index: false
+                                        locked: false
+                                        style: ''
+                                        permissions: null
+                                        fieldtype: input
+                                        relationType: false
+                                        invisible: false
+                                        visibleGridView: true
+                                        visibleSearch: false
+                                        defaultValue: null
+                                        columnLength: 190
+                                        regex: ''
+                                        regexFlags: {  }
+                                        unique: false
+                                        showCharCount: false
+                                        width: ''
+                                        defaultValueGenerator: ''
+                                        datatype: data
+                                    -
+                                        name: storeAddress
+                                        title: 'Store Address'
+                                        tooltip: 'Address of the Store'
+                                        mandatory: true
+                                        noteditable: true
+                                        index: false
+                                        locked: false
+                                        style: ''
+                                        permissions: null
+                                        fieldtype: textarea
+                                        relationType: false
+                                        invisible: false
+                                        visibleGridView: true
+                                        visibleSearch: false
+                                        maxLength: null
+                                        showCharCount: false
+                                        excludeFromSearchIndex: false
+                                        height: ''
+                                        width: ''
+                                        datatype: data
+                                    -
+                                        name: Rating
+                                        title: Rating
+                                        tooltip: 'Rating of the  store'
+                                        mandatory: false
+                                        noteditable: true
+                                        index: false
+                                        locked: false
+                                        style: ''
+                                        permissions: null
+                                        fieldtype: numeric
+                                        relationType: false
+                                        invisible: false
+                                        visibleGridView: true
+                                        visibleSearch: false
+                                        defaultValue: null
+                                        integer: false
+                                        unsigned: false
+                                        minValue: null
+                                        maxValue: null
+                                        unique: false
+                                        decimalSize: null
+                                        decimalPrecision: null
+                                        width: ''
+                                        defaultValueGenerator: ''
+                                        datatype: data
+                                locked: false
+                                fieldtype: panel
+                                layout: null
+                                border: false
+                                icon: ''
+                                labelWidth: 100
+                                labelAlign: left
+                        locked: false
+                        fieldtype: panel
+                        layout: null
+                        border: false
+                        icon: null
+                        labelWidth: 100
+                        labelAlign: left
+                    default: 0

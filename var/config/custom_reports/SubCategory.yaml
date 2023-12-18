@@ -1,0 +1,23 @@
+pimcore_custom_reports:
+    definitions:
+        SubCategory:
+            name: SubCategory
+            sql: ''
+            dataSourceConfig: {  }
+            columnConfiguration: {  }
+            niceName: ''
+            group: ''
+            groupIconClass: ''
+            iconClass: ''
+            menuShortcut: true
+            reportClass: ''
+            chartType: ''
+            pieColumn: null
+            pieLabelColumn: null
+            xAxis: null
+            yAxis: null
+            modificationDate: 1702535449
+            creationDate: 1702535449
+            shareGlobally: true
+            sharedUserNames: {  }
+            sharedRoleNames: {  }

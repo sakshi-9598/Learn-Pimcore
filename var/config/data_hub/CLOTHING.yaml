@@ -1,0 +1,634 @@
+pimcore_data_hub:
+    configurations:
+        CLOTHING:
+            general:
+                active: true
+                type: dataImporterDataObject
+                name: CLOTHING
+                description: ''
+                group: ''
+                path: null
+                modificationDate: 1702480464
+                createDate: 1701505101
+            loaderConfig:
+                type: asset
+                settings:
+                    assetPath: '/CSV and EXCEL files/finalcloth.csv'
+            interpreterConfig:
+                type: csv
+                settings:
+                    skipFirstRow: true
+                    delimiter: ','
+                    enclosure: '"'
+                    escape: \
+            resolverConfig:
+                elementType: dataObject
+                dataObjectClassId: clothing
+                loadingStrategy:
+                    type: attribute
+                    settings:
+                        dataSourceIndex: '1'
+                        attributeName: sku
+                        language: ''
+                        includeUnpublished: true
+                createLocationStrategy:
+                    type: findOrCreateFolder
+                    settings:
+                        dataSourceIndex: '0'
+                        fallbackPath: /
+                locationUpdateStrategy:
+                    type: findOrCreateFolder
+                    settings:
+                        dataSourceIndex: '0'
+                        fallbackPath: /
+                publishingStrategy:
+                    type: noChangeUnpublishNew
+            processingConfig:
+                executionType: sequential
+                idDataIndex: ''
+            mappingConfig:
+                -
+                    label: 'sku [1]'
+                    dataSourceIndex:
+                        - '1'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: sku
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'English ProductName [2]'
+                    dataSourceIndex:
+                        - '2'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: productName
+                            language: en
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'English Description [3]'
+                    dataSourceIndex:
+                        - '3'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: productDescription
+                            language: en
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Color [4]'
+                    dataSourceIndex:
+                        - '4'
+                    transformationResultType: rgbaColor
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: color
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: asColor
+                -
+                    label: 'CountryOfOrigin [5]'
+                    dataSourceIndex:
+                        - '5'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: countryOfOrigin
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Brand [6]'
+                    dataSourceIndex:
+                        - '6'
+                    settings:
+                        loadStrategy: path
+                        attributeDataObjectClassId: ''
+                        attributeName: ''
+                        attributeLanguage: ''
+                    transformationResultType: dataObject
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: brand
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                loadStrategy: path
+                                attributeDataObjectClassId: ''
+                                attributeName: ''
+                                attributeLanguage: ''
+                            type: loadDataObject
+                -
+                    label: 'Weight [7]'
+                    dataSourceIndex:
+                        - '7'
+                    settings:
+                        unitSourceSelect: static
+                        staticUnitSelect: g
+                    transformationResultType: quantityValue
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: weight
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                unitSourceSelect: static
+                                staticUnitSelect: g
+                            type: quantityValue
+                -
+                    label: 'Category [8]'
+                    dataSourceIndex:
+                        - '8'
+                    settings:
+                        loadStrategy: path
+                        attributeDataObjectClassId: ''
+                        attributeName: ''
+                        attributeLanguage: ''
+                    transformationResultType: dataObject
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: category
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                loadStrategy: path
+                                attributeDataObjectClassId: ''
+                                attributeName: ''
+                                attributeLanguage: ''
+                            type: loadDataObject
+                -
+                    label: 'Subcategory [9]'
+                    dataSourceIndex:
+                        - '9'
+                    settings:
+                        loadStrategy: path
+                        attributeDataObjectClassId: ''
+                        attributeName: ''
+                        attributeLanguage: ''
+                    transformationResultType: dataObject
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: subCategory
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                loadStrategy: path
+                                attributeDataObjectClassId: ''
+                                attributeName: ''
+                                attributeLanguage: ''
+                            type: loadDataObject
+                -
+                    label: 'GenericName [10]'
+                    dataSourceIndex:
+                        - '10'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: genericName
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Length [11]'
+                    dataSourceIndex:
+                        - '11'
+                    settings:
+                        unitSourceSelect: static
+                        staticUnitSelect: cm
+                    transformationResultType: quantityValue
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: length
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                unitSourceSelect: static
+                                staticUnitSelect: cm
+                            type: quantityValue
+                -
+                    label: 'width [12]'
+                    dataSourceIndex:
+                        - '12'
+                    settings:
+                        unitSourceSelect: static
+                        staticUnitSelect: cm
+                    transformationResultType: quantityValue
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: width
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                unitSourceSelect: static
+                                staticUnitSelect: cm
+                            type: quantityValue
+                -
+                    label: 'Generic Size [13]'
+                    dataSourceIndex:
+                        - '13'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: GenericSize.genericSize.genericSize
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Numeric Size [14]'
+                    dataSourceIndex:
+                        - '14'
+                    transformationResultType: numeric
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: numericSize.numericSize.numericSize
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: numeric
+                -
+                    label: 'Display Image [15]'
+                    dataSourceIndex:
+                        - '15'
+                    settings:
+                        loadStrategy: path
+                    transformationResultType: asset
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: dispalyImage
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                loadStrategy: path
+                            type: loadAsset
+                -
+                    label: 'Images [16]'
+                    dataSourceIndex:
+                        - '16'
+                    settings:
+                        delimiter: ','
+                        loadStrategy: path
+                    transformationResultType: gallery
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: images
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                delimiter: ','
+                            type: explode
+                        -
+                            settings:
+                                loadStrategy: path
+                            type: loadAsset
+                        -
+                            type: gallery
+                -
+                    label: 'StockSize [17]'
+                    dataSourceIndex:
+                        - '17'
+                    transformationResultType: numeric
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: inStockValue
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: numeric
+                -
+                    label: 'Next Availability [18]'
+                    dataSourceIndex:
+                        - '18'
+                    settings:
+                        format: Y-m-d
+                    transformationResultType: date
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: nextAvailability
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                format: Y-m-d
+                            type: date
+                -
+                    label: 'Price [19]'
+                    dataSourceIndex:
+                        - '19'
+                    transformationResultType: numeric
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: price
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: numeric
+                -
+                    label: 'Discount [20]'
+                    dataSourceIndex:
+                        - '20'
+                    transformationResultType: numeric
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: discount
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: numeric
+                -
+                    label: 'Store [21]'
+                    dataSourceIndex:
+                        - '21'
+                    settings:
+                        delimiter: ''
+                        loadStrategy: attribute
+                        attributeDataObjectClassId: store
+                        attributeName: StoreName
+                        partialMatch: 'on'
+                        attributeLanguage: ''
+                    transformationResultType: dataObjectArray
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: store
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                delimiter: ''
+                            type: explode
+                        -
+                            settings:
+                                loadStrategy: attribute
+                                attributeDataObjectClassId: store
+                                attributeName: StoreName
+                                partialMatch: 'on'
+                                attributeLanguage: ''
+                            type: loadDataObject
+                -
+                    label: 'ManufacturerAddress [22]'
+                    dataSourceIndex:
+                        - '22'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: manufacturerAddress
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'MaterialUsed [23]'
+                    dataSourceIndex:
+                        - '23'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: materialUsed
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Date of Manufacturing [24]'
+                    dataSourceIndex:
+                        - '24'
+                    settings:
+                        format: Y-m-d
+                    transformationResultType: date
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: dateOfManufacturing
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                format: Y-m-d
+                            type: date
+                -
+                    label: 'CollarType [25]'
+                    dataSourceIndex:
+                        - '25'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: collarType.collarType.collarType
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Pattern [26]'
+                    dataSourceIndex:
+                        - '26'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: pattern.pattern.pattern
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Season [27]'
+                    dataSourceIndex:
+                        - '27'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: season.season.season
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'SleeveType [28]'
+                    dataSourceIndex:
+                        - '28'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: sleeveType.sleeveType.sleeveType
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'neck type [29]'
+                    dataSourceIndex:
+                        - '29'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: neckType.neckType.neckType
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'rating [30]'
+                    dataSourceIndex:
+                        - '30'
+                    transformationResultType: numeric
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: customerReview.customerReview.rating
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: numeric
+                -
+                    label: 'comment [31]'
+                    dataSourceIndex:
+                        - '31'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: customerReview.customerReview.comment
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Type [32]'
+                    dataSourceIndex:
+                        - '32'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: type
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'German Product Name [33]'
+                    dataSourceIndex:
+                        - '33'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: productName
+                            language: de
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Spanish Product Name [34]'
+                    dataSourceIndex:
+                        - '34'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: productName
+                            language: es
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: o_key
+                    dataSourceIndex:
+                        - '2'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: key
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+            executionConfig:
+                scheduleType: recurring
+                cronDefinition: ''
+                scheduledAt: ''
+            permissions:
+                user: {  }
+                role: {  }
+            workspaces: {  }

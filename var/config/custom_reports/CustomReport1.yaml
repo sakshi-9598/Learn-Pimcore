@@ -1,0 +1,54 @@
+pimcore_custom_reports:
+    definitions:
+        CustomReport1:
+            name: CustomReport1
+            sql: ''
+            dataSourceConfig:
+                -
+                    sql: 'object_category.oo_id as catId, object_category.key as catName, count(*) as Product_count'
+                    from: 'object_category join object_relations_clothing on object_category.oo_id = object_relations_clothing.dest_id'
+                    where: "object_category.key IN ('MENS', 'WOMENS', 'KIDS')"
+                    groupby: object_category.oo_id
+                    type: sql
+            columnConfiguration:
+                -
+                    name: catId
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel263-5
+                -
+                    name: catName
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel263-6
+                -
+                    name: Product_count
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel263-7
+            niceName: 'Catergories count'
+            group: Categories
+            groupIconClass: ''
+            iconClass: ''
+            menuShortcut: true
+            reportClass: ''
+            chartType: pie
+            pieColumn: Product_count
+            pieLabelColumn: catName
+            xAxis: count(sku)
+            yAxis:
+                - categoryName
+            modificationDate: 1702535364
+            creationDate: 1701713120
+            shareGlobally: true
+            sharedUserNames: {  }
+            sharedRoleNames: {  }

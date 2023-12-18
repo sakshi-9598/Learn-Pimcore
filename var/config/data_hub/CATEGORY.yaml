@@ -1,0 +1,113 @@
+pimcore_data_hub:
+    configurations:
+        CATEGORY:
+            general:
+                active: true
+                type: dataImporterDataObject
+                name: CATEGORY
+                description: ''
+                group: ''
+                path: null
+                modificationDate: 1702495708
+                createDate: 1701497062
+            loaderConfig:
+                type: asset
+                settings:
+                    assetPath: '/CSV and EXCEL files/Team8.xlsx'
+            interpreterConfig:
+                type: xlsx
+                settings:
+                    skipFirstRow: true
+                    sheetName: category
+            resolverConfig:
+                elementType: dataObject
+                dataObjectClassId: category
+                loadingStrategy:
+                    type: attribute
+                    settings:
+                        dataSourceIndex: '0'
+                        attributeName: categoryName
+                        language: ''
+                        includeUnpublished: true
+                createLocationStrategy:
+                    type: findOrCreateFolder
+                    settings:
+                        dataSourceIndex: '2'
+                        fallbackPath: /
+                locationUpdateStrategy:
+                    type: findOrCreateFolder
+                    settings:
+                        dataSourceIndex: '2'
+                        fallbackPath: /
+                publishingStrategy:
+                    type: alwaysPublish
+            processingConfig:
+                executionType: sequential
+                idDataIndex: ''
+            mappingConfig:
+                -
+                    label: 'CategoryName [0]'
+                    dataSourceIndex:
+                        - '0'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: categoryName
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'CategoryDescription [1]'
+                    dataSourceIndex:
+                        - '1'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: categoryDescription
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: o_key
+                    dataSourceIndex:
+                        - '0'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: key
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: 'Image [3]'
+                    dataSourceIndex:
+                        - '3'
+                    transformationResultType: asset
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: categoryImage
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    settings:
+                        loadStrategy: id
+                    transformationPipeline:
+                        -
+                            settings:
+                                loadStrategy: id
+                            type: loadAsset
+            executionConfig:
+                scheduleType: recurring
+                cronDefinition: ''
+                scheduledAt: ''
+            permissions:
+                user: {  }
+                role: {  }
+            workspaces: {  }

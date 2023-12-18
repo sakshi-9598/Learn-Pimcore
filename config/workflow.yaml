@@ -1,0 +1,114 @@
+
+pimcore:
+    workflows:
+        workflow:
+            label: 'Product Workflow'
+            type: 'state_machine'
+            supports:
+            - 'Pimcore\Model\DataObject\Clothing'
+            places:
+                operator:
+                    label: 'Adding-Basic-info'
+                    color: '#377ea9'
+                    permissions:
+                        - objectLayout: 'BasicInfoLayout'
+                          # publish: false
+                          # unpublish: false
+                operator_rework:
+                    label: 'Reworking-on-Bsic-info'
+                    color: '#377ea9'
+                    permissions:
+                        - objectLayout: 'BasicInfoLayout'
+
+                commerce_team:
+                    label: 'Data_Enrichment'
+                    title: 'Update assets and sales info'
+                    color: '#d9ef36'
+                    permissions:
+                        - objectLayout: 'MediaAndSalesLayout' 
+                          # publish: false
+                          # unpublish: false   
+           
+                review_team:
+                    label: 'Review product details'
+                    title: 'Content ready to publish'
+                    color: '#d9ef36'
+                    permissions:
+                        - objectLayout: 'ReviewerLayout'      
+
+                    
+                accepted:
+                    label: 'Accepted product'
+                    color: '#28a013'
+                    permissions:
+                        - objectLayout: 'ReviewerLayout'
+                        
+                #TODO
+            transitions:
+                start_basic_enrichment:
+                    from: operator
+                    to: commerce_team
+                    guard: "is_granted('ROLE_OPERATOR') or is_granted('ROLE_PIMCORE_ADMIN')"
+                    options:
+                        label: 'Forward to  commerce team for enrichment'
+                        notes:
+                            commentEnabled: true
+                            commentRequired: true
+
+                rework_basic_enrichment:
+                    from: operator_rework
+                    to: review_team
+                    guard: "is_granted('ROLE_OPERATOR') or is_granted('ROLE_PIMCORE_ADMIN')"
+                    options:
+                        label: 'Forward to review team to review changes'
+                        notes:
+                            commentEnabled: true
+                            commentRequired: true
+
+
+                commercial_updates:
+                    from: commerce_team
+                    to: review_team
+                    guard: "is_granted('ROLE_COMMERCETEAM') or is_granted('ROLE_PIMCORE_ADMIN')"
+                    options:
+                        label: 'Submit details to get reviewed'
+                        notes:
+                            commentEnabled: true
+                            commentRequired: false
+
+                reject_commercial_updates:
+                    from: review_team
+                    to: commerce_team
+                    guard: "is_granted('ROLE_REVIEWER') or is_granted('ROLE_PIMCORE_ADMIN')"
+                    options:
+                        label: "Media And sales Info Not Valid"
+                        notes:
+                            commentEnabled: true
+                            commentRequired: true
+
+
+                rejected_basic_information:
+                    from: review_team
+                    to: operator_rework
+                    guard: "is_granted('ROLE_REVIEWER') or is_granted('ROLE_PIMCORE_ADMIN')"
+                    options:
+                        label: "Basic Info is Not Valid"
+                        notes:
+                            commentEnabled: true
+                            commentRequired: true
+
+
+                review:
+                    from: review_team
+                    to: accepted
+                    guard: "is_fully_authenticated() and is_granted('ROLE_REVIEWER') or is_granted('ROLE_PIMCORE_ADMIN')"
+                    options:
+                        label: ' Approve and publish the product'
+                        notes:
+                            commentEnabled: true
+                            commentRequired: true
+                            additionalFields:
+                              - name: 'timeWorked'
+                                fieldType: 'input'
+                                title: 'Time Spent'
+                                required: true
