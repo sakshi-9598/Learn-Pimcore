@@ -1,0 +1,13 @@
+CategoryName,CategoryDescription,storage path,Type,Image
+MENS,Men's clothing and accessories.       ,/CATEGORY,Object,355
+CASUAL WEAR,Comfortable and informal clothing suitable for everyday wear.    ,/CATEGORY/MENS,Variant,352
+ETHINIC WEAR,Traditional and cultural clothing for special occasions.      ,/CATEGORY/MENS,Variant,354
+FORMAL WEAR,Elegant and sophisticated clothing suitable for formal occasions.    ,/CATEGORY/MENS,Variant,353
+WOMENS,Women's clothing and accessories.      ,/CATEGORY,Object,358
+TRADITIONAL WEAR,Traditional and cultural clothing for special events.     ,/CATEGORY/WOMENS,Variant,360
+WESTERN WEAR,Party wear western dresses,/CATEGORY/WOMENS,Variant,357
+SPORTS WEAR,Athletic and sporty clothing for various physical activities.  ,/CATEGORY/WOMENS,Variant,359
+KIDS,Clothing and accessories for children.      ,/CATEGORY,Object,365
+BOYS,Trendy and playful clothing for boys. ,/CATEGORY/KIDS,Variant,364
+GIRLS,Stylish and cute clothing for girls.,/CATEGORY/KIDS,Variant,362
+INFANTS,Adorable and comfortable clothing for infants and toddlers.   ,/CATEGORY/KIDS,Variant,363
