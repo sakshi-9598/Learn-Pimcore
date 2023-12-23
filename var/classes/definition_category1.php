@@ -8,6 +8,7 @@
  * - CategoryName [input]
  * - Description [textarea]
  * - child [manyToOneRelation]
+ * - inn [languagemultiselect]
  */
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -17,7 +18,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1702357686,
+   'modificationDate' => 1703229763,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -156,6 +157,36 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             array (
             ),
              'width' => '',
+          )),
+          3 => 
+          Pimcore\Model\DataObject\ClassDefinition\Data\Languagemultiselect::__set_state(array(
+             'name' => 'inn',
+             'title' => 'Inn',
+             'tooltip' => '',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'options' => NULL,
+             'maxItems' => NULL,
+             'renderType' => 'list',
+             'dynamicOptions' => false,
+             'height' => '',
+             'width' => '',
+             'optionsProviderType' => NULL,
+             'optionsProviderClass' => NULL,
+             'optionsProviderData' => NULL,
+             'onlySystemLanguages' => false,
           )),
         ),
          'locked' => false,

@@ -63,8 +63,19 @@ services:
     app:
         class: App\Controller\DiscountController
 
+    categoryoptionProvider:
+        class: App\OptionsProvider\SubcategoryOptionsProvider 
+        public: 
+        
+    mastercategoryoptionProvider:
+        class: App\OptionsProvider\MasterSubCategoryOptionsProvider 
+        public: true
+
     App\Controller\TokenController:
         class: App\Controller\TokenController
+
+    
+
 
 
    

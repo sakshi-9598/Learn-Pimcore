@@ -11,7 +11,7 @@ class ProductValidationSubscriber{
 
     public function onPreUpdate(DataObjectEvent $event)
     {
-        $this->checkClothingclassValidations($event);
+        // $this->checkClothingclassValidations($event);
     }
 
     private function checkClothingclassValidations(DataObjectEvent $event){

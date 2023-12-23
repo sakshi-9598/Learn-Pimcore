@@ -40,6 +40,7 @@
  * - sleeveType [objectbricks]
  * - neckType [objectbricks]
  * - customerReview [objectbricks]
+ * - new [classificationstore]
  */
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -49,7 +50,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'Clothing',
    'description' => 'This is our peodut class',
    'creationDate' => NULL,
-   'modificationDate' => 1702479509,
+   'modificationDate' => 1703227655,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -1228,6 +1229,47 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'maxItems' => NULL,
                  'border' => false,
+              )),
+              6 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Classificationstore::__set_state(array(
+                 'name' => 'new',
+                 'title' => 'New',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'children' => 
+                array (
+                ),
+                 'labelWidth' => 0,
+                 'localized' => false,
+                 'storeId' => 1,
+                 'hideEmptyData' => false,
+                 'disallowAddRemove' => false,
+                 'referencedFields' => 
+                array (
+                ),
+                 'fieldDefinitionsCache' => NULL,
+                 'allowedGroupIds' => 
+                array (
+                ),
+                 'activeGroupDefinitions' => 
+                array (
+                ),
+                 'maxItems' => NULL,
+                 'height' => NULL,
+                 'width' => NULL,
               )),
             ),
              'locked' => false,

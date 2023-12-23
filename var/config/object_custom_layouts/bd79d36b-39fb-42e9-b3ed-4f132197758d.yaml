@@ -7,7 +7,7 @@ pimcore:
                     name: WholesaleAndRetailer
                     description: ''
                     creationDate: 1702021340
-                    modificationDate: 1702021352
+                    modificationDate: 1703326291
                     userOwner: 2
                     classId: category
                     layoutDefinitions:

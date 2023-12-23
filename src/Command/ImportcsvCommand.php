@@ -105,7 +105,7 @@ class ImportcsvCommand extends AbstractCommand
                     //PARENT CATEGORY DOES NOT EXIST, CREATE A NEW
                 }
 
-                //NOW INSIDE sub CATEGORY MAKE OUR SUBCATEGORIES
+                //NOW INSIDE CATEGORY MAKE OUR SUBCATEGORIES
                 // CHECK if  sub categories are already  exists or not
                 // "/CATEGORY/MENS/CASUAL WEAR"
                 $existingSubCategory = Category::getByPath($parentPath.'/'.$row[array_search('CategoryName', $headers)] );
