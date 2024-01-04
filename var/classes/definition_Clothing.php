@@ -17,30 +17,28 @@
  * - weight [quantityValue]
  * - length [quantityValue]
  * - width [quantityValue]
- * - GenericSize [objectbricks]
- * - numericSize [objectbricks]
  * - brand [manyToOneRelation]
  * - category [manyToOneRelation]
- * - subCategory [manyToOneRelation]
+ * - numericSize [objectbricks]
+ * - genericSize [objectbricks]
+ * - sellingprice [calculatedValue]
  * - dispalyImage [image]
  * - images [imageGallery]
  * - video [video]
  * - store [manyToManyObjectRelation]
+ * - productAvailability [checkbox]
  * - inStockValue [numeric]
  * - nextAvailability [date]
- * - price [numeric]
+ * - actualPrice [quantityValue]
  * - discount [numeric]
  * - discountedPrice [calculatedValue]
  * - manufacturerAddress [textarea]
  * - materialUsed [input]
  * - dateOfManufacturing [date]
- * - collarType [objectbricks]
- * - pattern [objectbricks]
  * - season [objectbricks]
- * - sleeveType [objectbricks]
- * - neckType [objectbricks]
- * - customerReview [objectbricks]
- * - new [classificationstore]
+ * - clothingPattern [objectbricks]
+ * - specificDetails [classificationstore]
+ * - customerReview [classificationstore]
  */
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -50,7 +48,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'Clothing',
    'description' => 'This is our peodut class',
    'creationDate' => NULL,
-   'modificationDate' => 1703227655,
+   'modificationDate' => 1704301137,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -112,9 +110,9 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'sku',
                  'title' => 'Sku',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
-                 'index' => true,
+                 'index' => false,
                  'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
@@ -128,11 +126,11 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'defaultValue' => NULL,
                  'columnLength' => 190,
-                 'regex' => '^CLOTH\\d+$',
+                 'regex' => '',
                  'regexFlags' => 
                 array (
                 ),
-                 'unique' => true,
+                 'unique' => false,
                  'showCharCount' => false,
                  'width' => '',
                  'defaultValueGenerator' => '',
@@ -193,7 +191,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                         ),
                          'defaultValue' => NULL,
                          'columnLength' => 189,
-                         'regex' => '^[\\w\\d\\s.,\'-áéíóúÁÉÍÓÚäöüÄÖÜßñÑ]+$',
+                         'regex' => '',
                          'regexFlags' => 
                         array (
                         ),
@@ -258,7 +256,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'color',
                  'title' => 'Color',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -452,58 +450,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'decimalPrecision' => NULL,
               )),
               8 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'GenericSize',
-                 'title' => 'Generic Size',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'allowedTypes' => 
-                array (
-                  0 => 'genericSize',
-                ),
-                 'maxItems' => NULL,
-                 'border' => false,
-              )),
-              9 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'numericSize',
-                 'title' => 'Numeric Size',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'allowedTypes' => 
-                array (
-                  0 => 'numericSize',
-                ),
-                 'maxItems' => NULL,
-                 'border' => false,
-              )),
-              10 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                  'name' => 'brand',
                  'title' => 'Brand',
@@ -545,7 +491,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
               )),
-              11 => 
+              9 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
                  'name' => 'category',
                  'title' => 'Category',
@@ -587,46 +533,82 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'width' => '',
               )),
-              12 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
-                 'name' => 'subCategory',
-                 'title' => 'Sub Category',
-                 'tooltip' => 'Relation with the child objects of category master class',
-                 'mandatory' => true,
+              10 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
+                 'name' => 'numericSize',
+                 'title' => 'Numeric Size',
+                 'tooltip' => '',
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'fieldtype' => '',
-                 'relationType' => true,
+                 'relationType' => false,
                  'invisible' => false,
-                 'visibleGridView' => true,
+                 'visibleGridView' => false,
                  'visibleSearch' => false,
                  'blockedVarsForExport' => 
                 array (
                 ),
-                 'classes' => 
+                 'allowedTypes' => 
                 array (
-                  0 => 
-                  array (
-                    'classes' => 'Category',
-                  ),
+                  0 => 'numericSize',
                 ),
-                 'displayMode' => 'grid',
-                 'pathFormatterClass' => '',
-                 'assetInlineDownloadAllowed' => false,
-                 'assetUploadPath' => '',
-                 'allowToClearRelation' => true,
-                 'objectsAllowed' => true,
-                 'assetsAllowed' => false,
-                 'assetTypes' => 
+                 'maxItems' => NULL,
+                 'border' => false,
+              )),
+              11 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
+                 'name' => 'genericSize',
+                 'title' => 'Generic Size',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
                 array (
                 ),
-                 'documentsAllowed' => false,
-                 'documentTypes' => 
+                 'allowedTypes' => 
+                array (
+                  0 => 'genericSize',
+                ),
+                 'maxItems' => NULL,
+                 'border' => false,
+              )),
+              12 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\CalculatedValue::__set_state(array(
+                 'name' => 'sellingprice',
+                 'title' => 'Selling Price',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
                 array (
                 ),
+                 'elementType' => 'input',
+                 'calculatorType' => 'class',
+                 'calculatorExpression' => '',
+                 'calculatorClass' => '@app',
+                 'columnLength' => 190,
                  'width' => '',
               )),
             ),
@@ -804,6 +786,28 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'height' => '',
               )),
               1 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Checkbox::__set_state(array(
+                 'name' => 'productAvailability',
+                 'title' => 'Product Availability',
+                 'tooltip' => '',
+                 'mandatory' => true,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'defaultValue' => 0,
+                 'defaultValueGenerator' => '',
+              )),
+              2 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
                  'name' => 'inStockValue',
                  'title' => 'In Stock Value',
@@ -833,7 +837,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '',
                  'defaultValueGenerator' => '',
               )),
-              2 => 
+              3 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Date::__set_state(array(
                  'name' => 'nextAvailability',
                  'title' => 'Next Availability',
@@ -857,11 +861,11 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'columnType' => 'bigint(20)',
                  'defaultValueGenerator' => '',
               )),
-              3 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
-                 'name' => 'price',
-                 'title' => 'Price',
-                 'tooltip' => 'Price of the Product',
+              4 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\QuantityValue::__set_state(array(
+                 'name' => 'actualPrice',
+                 'title' => 'Actual Price',
+                 'tooltip' => 'Actual Price of the Product',
                  'mandatory' => true,
                  'noteditable' => false,
                  'index' => false,
@@ -876,18 +880,28 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'blockedVarsForExport' => 
                 array (
                 ),
+                 'unitWidth' => '',
+                 'defaultUnit' => 'INR',
+                 'validUnits' => 
+                array (
+                  0 => 'Yen',
+                  1 => 'USD',
+                  2 => 'Euro',
+                  3 => 'INR',
+                ),
+                 'unique' => false,
+                 'autoConvert' => true,
+                 'defaultValueGenerator' => '',
+                 'width' => '',
                  'defaultValue' => NULL,
                  'integer' => false,
                  'unsigned' => true,
                  'minValue' => 0.0,
                  'maxValue' => NULL,
-                 'unique' => false,
                  'decimalSize' => NULL,
                  'decimalPrecision' => NULL,
-                 'width' => '',
-                 'defaultValueGenerator' => '',
               )),
-              4 => 
+              5 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
                  'name' => 'discount',
                  'title' => 'Discount',
@@ -917,7 +931,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'width' => '',
                  'defaultValueGenerator' => '',
               )),
-              5 => 
+              6 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\CalculatedValue::__set_state(array(
                  'name' => 'discountedPrice',
                  'title' => 'Discounted Price',
@@ -1076,58 +1090,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             array (
               0 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'collarType',
-                 'title' => 'Collar Type',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'allowedTypes' => 
-                array (
-                  0 => 'collarType',
-                ),
-                 'maxItems' => NULL,
-                 'border' => false,
-              )),
-              1 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'pattern',
-                 'title' => 'Pattern',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'allowedTypes' => 
-                array (
-                  0 => 'pattern',
-                ),
-                 'maxItems' => NULL,
-                 'border' => false,
-              )),
-              2 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
                  'name' => 'season',
                  'title' => 'Season',
                  'tooltip' => '',
@@ -1152,10 +1114,10 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'maxItems' => NULL,
                  'border' => false,
               )),
-              3 => 
+              1 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'sleeveType',
-                 'title' => 'Sleeve Type',
+                 'name' => 'clothingPattern',
+                 'title' => 'Clothing Pattern',
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
@@ -1173,67 +1135,15 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'allowedTypes' => 
                 array (
-                  0 => 'sleeveType',
+                  0 => 'pattern',
                 ),
                  'maxItems' => NULL,
                  'border' => false,
               )),
-              4 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'neckType',
-                 'title' => 'Neck Type',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'allowedTypes' => 
-                array (
-                  0 => 'neckType',
-                ),
-                 'maxItems' => NULL,
-                 'border' => false,
-              )),
-              5 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks::__set_state(array(
-                 'name' => 'customerReview',
-                 'title' => 'Customer Review',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'fieldtype' => '',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-                 'allowedTypes' => 
-                array (
-                  0 => 'customerReview',
-                ),
-                 'maxItems' => NULL,
-                 'border' => false,
-              )),
-              6 => 
+              2 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Classificationstore::__set_state(array(
-                 'name' => 'new',
-                 'title' => 'New',
+                 'name' => 'specificDetails',
+                 'title' => 'Specific Details',
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
@@ -1255,6 +1165,47 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'labelWidth' => 0,
                  'localized' => false,
                  'storeId' => 1,
+                 'hideEmptyData' => true,
+                 'disallowAddRemove' => false,
+                 'referencedFields' => 
+                array (
+                ),
+                 'fieldDefinitionsCache' => NULL,
+                 'allowedGroupIds' => 
+                array (
+                ),
+                 'activeGroupDefinitions' => 
+                array (
+                ),
+                 'maxItems' => NULL,
+                 'height' => NULL,
+                 'width' => NULL,
+              )),
+              3 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Classificationstore::__set_state(array(
+                 'name' => 'customerReview',
+                 'title' => 'Customer Review',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'fieldtype' => '',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+                 'children' => 
+                array (
+                ),
+                 'labelWidth' => 0,
+                 'localized' => false,
+                 'storeId' => 2,
                  'hideEmptyData' => false,
                  'disallowAddRemove' => false,
                  'referencedFields' => 
@@ -1304,7 +1255,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
      'labelWidth' => 100,
      'labelAlign' => 'left',
   )),
-   'icon' => '/bundles/pimcoreadmin/img/twemoji/1f45a.svg',
+   'icon' => '',
    'group' => 'PIM_project',
    'showAppLoggerTab' => false,
    'linkGeneratorReference' => '',

@@ -3,7 +3,7 @@
 namespace App\OptionsProvider;
 
 use Pimcore\Model\DataObject\ClassDefinition\Data;
-use Pimcore\Model\DataObject\Category;
+use Pimcore\Model\DataObject\Clothing;
 
 use Pimcore\Model\DataObject\AbstractObject;
 
@@ -18,15 +18,15 @@ class SubcategoryOptionsProvider implements SelectOptionsProviderInterface
     {
         $object = isset($context["object"]) ? $context["object"] : null;
 
-        $currentCat= Category::getById(($object ? $object->getId() : "unknown"));
+        // $currentCat= Category::getById(($object ? $object->getId() : "unknown"));
 
-        $parentCategory = Category::getById($object ? $object->getParentId():"unknown");
+        $parentCategory = Clothing::getById($object ? $object->getParentId():"unknown");
 
-        $parentCategoryName = "No Parent";
+        $parentCategoryName = "";
 
-        if ($parentCategory instanceof Category){
+        if ($parentCategory instanceof Clothing){
                     
-            $parentCategoryName = $parentCategory->getCategoryName();
+            $parentCategoryName = $parentCategory->getProductName('en');
         }
         
 

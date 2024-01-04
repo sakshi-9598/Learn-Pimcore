@@ -31,4 +31,6 @@ pimcore:
         versions:
             days: null
             steps: null
-    email: {  }
+    email:
+        debug:
+            email_addresses: shubhamon30@gmail.com

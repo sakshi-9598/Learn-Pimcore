@@ -1,0 +1,69 @@
+pimcore_custom_reports:
+    definitions:
+        countOfVariantsCategorywise:
+            name: countOfVariantsCategorywise
+            sql: ''
+            dataSourceConfig:
+                -
+                    sql: "select p.key as product_name, p.type as type, replace(p.path, '/CLOTHING/', '') as category, c.key as main_category, count(*) as variant_count"
+                    from: 'object_relations_clothing as r join object_clothing as p on r.src_id = p.id join object_category as c on c.id = r.dest_id'
+                    where: 'r.fieldname = "category" and p.type = "variant"'
+                    groupby: category
+                    type: sql
+            columnConfiguration:
+                -
+                    name: product_name
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel640-3
+                -
+                    name: type
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel640-4
+                -
+                    name: variant_count
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel640-5
+                -
+                    name: category
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel640-6
+                -
+                    name: main_category
+                    display: true
+                    export: true
+                    order: true
+                    width: ''
+                    label: ''
+                    id: extModel640-7
+            niceName: ''
+            group: ''
+            groupIconClass: ''
+            iconClass: ''
+            menuShortcut: true
+            reportClass: ''
+            chartType: pie
+            pieColumn: variant_count
+            pieLabelColumn: category
+            xAxis: null
+            yAxis: {  }
+            modificationDate: 1704299728
+            creationDate: 1704285035
+            shareGlobally: true
+            sharedUserNames: {  }
+            sharedRoleNames: {  }

@@ -7,7 +7,7 @@ pimcore:
                     name: Reviewer
                     description: ''
                     creationDate: 1701597849
-                    modificationDate: 1702457110
+                    modificationDate: 1704283744
                     userOwner: 2
                     classId: clothing
                     layoutDefinitions:
@@ -50,7 +50,7 @@ pimcore:
                                                 name: sku
                                                 title: Sku
                                                 tooltip: ''
-                                                mandatory: true
+                                                mandatory: false
                                                 noteditable: false
                                                 index: false
                                                 locked: false
@@ -59,13 +59,13 @@ pimcore:
                                                 fieldtype: input
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
                                                 defaultValue: null
                                                 columnLength: 190
                                                 regex: ''
                                                 regexFlags: {  }
-                                                unique: true
+                                                unique: false
                                                 showCharCount: false
                                                 width: ''
                                                 defaultValueGenerator: ''
@@ -111,14 +111,14 @@ pimcore:
                                                                 fieldtype: input
                                                                 relationType: false
                                                                 invisible: false
-                                                                visibleGridView: false
+                                                                visibleGridView: true
                                                                 visibleSearch: false
                                                                 defaultValue: null
-                                                                columnLength: 190
-                                                                regex: '^[A-Z][a-zA-Z0-9]*$'
+                                                                columnLength: 189
+                                                                regex: ''
                                                                 regexFlags: {  }
                                                                 unique: false
-                                                                showCharCount: false
+                                                                showCharCount: true
                                                                 width: ''
                                                                 defaultValueGenerator: ''
                                                                 datatype: data
@@ -172,7 +172,7 @@ pimcore:
                                                 fieldtype: rgbaColor
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
                                                 width: ''
                                                 datatype: data
@@ -247,7 +247,7 @@ pimcore:
                                                     - g
                                                     - kg
                                                 unique: false
-                                                autoConvert: false
+                                                autoConvert: true
                                                 defaultValueGenerator: ''
                                                 width: ''
                                                 defaultValue: null
@@ -279,8 +279,9 @@ pimcore:
                                                     - cm
                                                     - m
                                                     - mm
+                                                    - in
                                                 unique: false
-                                                autoConvert: false
+                                                autoConvert: true
                                                 defaultValueGenerator: ''
                                                 width: ''
                                                 defaultValue: null
@@ -312,8 +313,9 @@ pimcore:
                                                     - mm
                                                     - m
                                                     - cm
+                                                    - in
                                                 unique: false
-                                                autoConvert: false
+                                                autoConvert: true
                                                 defaultValueGenerator: ''
                                                 width: ''
                                                 defaultValue: null
@@ -323,46 +325,6 @@ pimcore:
                                                 maxValue: null
                                                 decimalSize: null
                                                 decimalPrecision: null
-                                                datatype: data
-                                            -
-                                                name: GenericSize
-                                                title: 'Generic Size'
-                                                tooltip: ''
-                                                mandatory: false
-                                                noteditable: false
-                                                index: false
-                                                locked: false
-                                                style: ''
-                                                permissions: null
-                                                fieldtype: objectbricks
-                                                relationType: false
-                                                invisible: false
-                                                visibleGridView: false
-                                                visibleSearch: false
-                                                allowedTypes:
-                                                    - genericSize
-                                                maxItems: null
-                                                border: false
-                                                datatype: data
-                                            -
-                                                name: numericSize
-                                                title: 'Numeric Size'
-                                                tooltip: ''
-                                                mandatory: false
-                                                noteditable: false
-                                                index: false
-                                                locked: false
-                                                style: ''
-                                                permissions: null
-                                                fieldtype: objectbricks
-                                                relationType: false
-                                                invisible: false
-                                                visibleGridView: false
-                                                visibleSearch: false
-                                                allowedTypes:
-                                                    - numericSize
-                                                maxItems: null
-                                                border: false
                                                 datatype: data
                                             -
                                                 name: brand
@@ -425,33 +387,65 @@ pimcore:
                                                 width: ''
                                                 datatype: data
                                             -
-                                                name: subCategory
-                                                title: 'Sub Category'
-                                                tooltip: 'Relation with the child objects of category master class'
-                                                mandatory: true
+                                                name: numericSize
+                                                title: 'Numeric Size'
+                                                tooltip: ''
+                                                mandatory: false
                                                 noteditable: false
                                                 index: false
                                                 locked: false
                                                 style: ''
                                                 permissions: null
-                                                fieldtype: manyToOneRelation
-                                                relationType: true
+                                                fieldtype: objectbricks
+                                                relationType: false
                                                 invisible: false
-                                                visibleGridView: true
+                                                visibleGridView: false
                                                 visibleSearch: false
-                                                classes:
-                                                    -
-                                                        classes: Category
-                                                displayMode: grid
-                                                pathFormatterClass: ''
-                                                assetInlineDownloadAllowed: false
-                                                assetUploadPath: ''
-                                                allowToClearRelation: true
-                                                objectsAllowed: true
-                                                assetsAllowed: false
-                                                assetTypes: {  }
-                                                documentsAllowed: false
-                                                documentTypes: {  }
+                                                allowedTypes:
+                                                    - numericSize
+                                                maxItems: null
+                                                border: false
+                                                datatype: data
+                                            -
+                                                name: genericSize
+                                                title: 'Generic Size'
+                                                tooltip: ''
+                                                mandatory: false
+                                                noteditable: false
+                                                index: false
+                                                locked: false
+                                                style: ''
+                                                permissions: null
+                                                fieldtype: objectbricks
+                                                relationType: false
+                                                invisible: false
+                                                visibleGridView: false
+                                                visibleSearch: false
+                                                allowedTypes:
+                                                    - genericSize
+                                                maxItems: null
+                                                border: false
+                                                datatype: data
+                                            -
+                                                name: sellingprice
+                                                title: 'Selling Price'
+                                                tooltip: ''
+                                                mandatory: false
+                                                noteditable: false
+                                                index: false
+                                                locked: false
+                                                style: ''
+                                                permissions: null
+                                                fieldtype: calculatedValue
+                                                relationType: false
+                                                invisible: false
+                                                visibleGridView: false
+                                                visibleSearch: false
+                                                elementType: input
+                                                calculatorType: class
+                                                calculatorExpression: ''
+                                                calculatorClass: '@app'
+                                                columnLength: 190
                                                 width: ''
                                                 datatype: data
                                         locked: false
@@ -486,7 +480,7 @@ pimcore:
                                                 fieldtype: image
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
                                                 uploadPath: ''
                                                 width: ''
@@ -589,6 +583,24 @@ pimcore:
                                                 height: ''
                                                 datatype: data
                                             -
+                                                name: productAvailability
+                                                title: 'Product Availability'
+                                                tooltip: ''
+                                                mandatory: true
+                                                noteditable: false
+                                                index: false
+                                                locked: false
+                                                style: ''
+                                                permissions: null
+                                                fieldtype: checkbox
+                                                relationType: false
+                                                invisible: false
+                                                visibleGridView: false
+                                                visibleSearch: false
+                                                defaultValue: 0
+                                                defaultValueGenerator: ''
+                                                datatype: data
+                                            -
                                                 name: inStockValue
                                                 title: 'In Stock Value'
                                                 tooltip: 'Number of products available'
@@ -601,7 +613,7 @@ pimcore:
                                                 fieldtype: numeric
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
                                                 defaultValue: null
                                                 integer: false
@@ -635,9 +647,9 @@ pimcore:
                                                 defaultValueGenerator: ''
                                                 datatype: data
                                             -
-                                                name: price
-                                                title: Price
-                                                tooltip: 'Price of the Product'
+                                                name: actualPrice
+                                                title: 'Actual Price'
+                                                tooltip: 'Actual Price of the Product'
                                                 mandatory: true
                                                 noteditable: false
                                                 index: false
@@ -647,22 +659,23 @@ pimcore:
                                                 fieldtype: quantityValue
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
                                                 unitWidth: ''
                                                 defaultUnit: INR
                                                 validUnits:
-                                                    - INR
-                                                    - USD
                                                     - Yen
+                                                    - USD
+                                                    - Euro
+                                                    - INR
                                                 unique: false
-                                                autoConvert: false
+                                                autoConvert: true
                                                 defaultValueGenerator: ''
                                                 width: ''
                                                 defaultValue: null
                                                 integer: false
                                                 unsigned: true
-                                                minValue: null
+                                                minValue: 0
                                                 maxValue: null
                                                 decimalSize: null
                                                 decimalPrecision: null
@@ -711,7 +724,7 @@ pimcore:
                                                 elementType: input
                                                 calculatorType: class
                                                 calculatorExpression: ''
-                                                calculatorClass: ''
+                                                calculatorClass: '@app'
                                                 columnLength: 190
                                                 width: ''
                                                 datatype: data
@@ -768,7 +781,7 @@ pimcore:
                                                 fieldtype: input
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
                                                 defaultValue: null
                                                 columnLength: 190
@@ -819,46 +832,6 @@ pimcore:
                                         datatype: layout
                                         children:
                                             -
-                                                name: collarType
-                                                title: 'Collar Type'
-                                                tooltip: ''
-                                                mandatory: false
-                                                noteditable: false
-                                                index: false
-                                                locked: false
-                                                style: ''
-                                                permissions: null
-                                                fieldtype: objectbricks
-                                                relationType: false
-                                                invisible: false
-                                                visibleGridView: false
-                                                visibleSearch: false
-                                                allowedTypes:
-                                                    - collarType
-                                                maxItems: null
-                                                border: false
-                                                datatype: data
-                                            -
-                                                name: pattern
-                                                title: Pattern
-                                                tooltip: ''
-                                                mandatory: false
-                                                noteditable: false
-                                                index: false
-                                                locked: false
-                                                style: ''
-                                                permissions: null
-                                                fieldtype: objectbricks
-                                                relationType: false
-                                                invisible: false
-                                                visibleGridView: false
-                                                visibleSearch: false
-                                                allowedTypes:
-                                                    - pattern
-                                                maxItems: null
-                                                border: false
-                                                datatype: data
-                                            -
                                                 name: season
                                                 title: Season
                                                 tooltip: ''
@@ -879,8 +852,8 @@ pimcore:
                                                 border: false
                                                 datatype: data
                                             -
-                                                name: sleeveType
-                                                title: 'Sleeve Type'
+                                                name: clothingPattern
+                                                title: 'Clothing Pattern'
                                                 tooltip: ''
                                                 mandatory: false
                                                 noteditable: false
@@ -894,13 +867,13 @@ pimcore:
                                                 visibleGridView: false
                                                 visibleSearch: false
                                                 allowedTypes:
-                                                    - sleeveType
+                                                    - pattern
                                                 maxItems: null
                                                 border: false
                                                 datatype: data
                                             -
-                                                name: neckType
-                                                title: 'Neck Type'
+                                                name: specificDetails
+                                                title: 'Specific Details'
                                                 tooltip: ''
                                                 mandatory: false
                                                 noteditable: false
@@ -908,15 +881,23 @@ pimcore:
                                                 locked: false
                                                 style: ''
                                                 permissions: null
-                                                fieldtype: objectbricks
+                                                fieldtype: classificationstore
                                                 relationType: false
                                                 invisible: false
                                                 visibleGridView: false
                                                 visibleSearch: false
-                                                allowedTypes:
-                                                    - neckType
+                                                children: {  }
+                                                labelWidth: 0
+                                                localized: false
+                                                storeId: 1
+                                                hideEmptyData: true
+                                                disallowAddRemove: false
+                                                fieldDefinitionsCache: null
+                                                allowedGroupIds: {  }
+                                                activeGroupDefinitions: {  }
                                                 maxItems: null
-                                                border: false
+                                                height: null
+                                                width: null
                                                 datatype: data
                                             -
                                                 name: customerReview
@@ -928,15 +909,23 @@ pimcore:
                                                 locked: false
                                                 style: ''
                                                 permissions: null
-                                                fieldtype: objectbricks
+                                                fieldtype: classificationstore
                                                 relationType: false
                                                 invisible: false
                                                 visibleGridView: false
                                                 visibleSearch: false
-                                                allowedTypes:
-                                                    - customerReview
+                                                children: {  }
+                                                labelWidth: 0
+                                                localized: false
+                                                storeId: 2
+                                                hideEmptyData: false
+                                                disallowAddRemove: false
+                                                fieldDefinitionsCache: null
+                                                allowedGroupIds: {  }
+                                                activeGroupDefinitions: {  }
                                                 maxItems: null
-                                                border: false
+                                                height: null
+                                                width: null
                                                 datatype: data
                                         locked: false
                                         fieldtype: panel

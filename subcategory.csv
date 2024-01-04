@@ -1,0 +1,44 @@
+CategoryName,CategoryDescription,storage path,Type,Image,parentCategory
+MENS,Classic and trendy clothing and accessories for men.,/CATEGORY,Object,355,
+TOP WEAR,Stylish and comfortable men's tops.,/CATEGORY/MENS,Variant,,MENS
+MENS TSHIRTS,Casual and fashionable men's T-shirts.,/CATEGORY/MENS/TOP WEAR,Variant,,MENS -> TOP WEAR
+CASUAL SHIRTS,Relaxed and versatile men's casual shirts.,/CATEGORY/MENS/TOP WEAR,Variant,,MENS -> TOP WEAR
+FORMAL SHIRTS,Elegant and sophisticated men's formal shirts.,/CATEGORY/MENS/TOP WEAR,Variant,,MENS -> TOP WEAR
+SWEATSHIRTS,Cozy and warm men's sweatshirts.,/CATEGORY/MENS/TOP WEAR,Variant,,MENS -> TOP WEAR
+BOTTOM WEAR,Stylish and comfortable men's bottom wear.,/CATEGORY/MENS,Variant,,MENS
+MENS JEANS,Trendy and durable men's jeans.,/CATEGORY/MENS/BOTTOM WEAR,Variant,,MENS -> BOTTOM WEAR
+CASUAL TROUSERS,Smart and casual men's trousers.,/CATEGORY/MENS/BOTTOM WEAR,Variant,,MENS -> BOTTOM WEAR
+FORMAL TROUSERS,Sophisticated men's formal trousers.,/CATEGORY/MENS/BOTTOM WEAR,Variant,,MENS -> BOTTOM WEAR
+SHORTS,Comfortable and stylish men's shorts.,/CATEGORY/MENS/BOTTOM WEAR,Variant,,MENS -> BOTTOM WEAR
+INDIAN AND FESTIVE WEAR,Traditional and festive men's ethnic wear.,/CATEGORY/MENS,Variant,,MENS
+KURTA SETS,Stylish men's kurta sets for special occasions.,/CATEGORY/MENS/INDIAN AND FESTIVE WEAR,Variant,,MENS -> INDIAN AND FESTIVE WEAR
+SHERWANIS,Traditional and elegant men's sherwanis.,/CATEGORY/MENS/INDIAN AND FESTIVE WEAR,Variant,,MENS -> INDIAN AND FESTIVE WEAR
+WOMENS,Chic and fashionable clothing and accessories for women.,/CATEGORY,Object,,
+WESTERN WEAR,Trendy and versatile women's western wear.,/CATEGORY/WOMENS,Variant,,WOMENS
+DRESSES,Stylish and feminine women's dresses.,/CATEGORY/WOMENS/WESTERN WEAR,Variant,,WOMENS -> WESTERN WEAR
+TOPS,Fashionable women's tops for various occasions.,/CATEGORY/WOMENS/WESTERN WEAR,Variant,,WOMENS -> WESTERN WEAR
+TSHIRTS and SHIRTS,Casual and comfortable women's T-shirts.,/CATEGORY/WOMENS/WESTERN WEAR,Variant,,WOMENS -> WESTERN WEAR
+TROUSERS and JEANS,Trendy women's jeans for a stylish look and Stylish women's trousers for a polished look. ,/CATEGORY/WOMENS/WESTERN WEAR,Variant,,WOMENS -> WESTERN WEAR
+SWEATERS,Cozy and stylish women's sweatshirts.,/CATEGORY/WOMENS/WESTERN WEAR,Variant,,WOMENS -> WESTERN WEAR
+JACKETS and COATS,Fashion-forward women's jackets and coats.,/CATEGORY/WOMENS/WESTERN WEAR,Variant,,WOMENS -> WESTERN WEAR
+SPORTS WEAR,Performance-oriented women's sports wear.,/CATEGORY/WOMENS,Variant,,WOMENS
+JOGGERS,Comfortable women's joggers for an active lifestyle.,/CATEGORY/WOMENS/SPORTS WEAR,Variant,,WOMENS ->  SPORTS WEAR
+GYM TIGHTS,Supportive women's gym tights for workouts.,/CATEGORY/WOMENS/SPORTS WEAR,Variant,,WOMENS ->  SPORTS WEAR
+TRACK PANTS,Stylish women's track pants for casual activities.,/CATEGORY/WOMENS/SPORTS WEAR,Variant,,WOMENS ->  SPORTS WEAR
+TRADITIONAL WEAR,Timeless and elegant women's traditional wear.,/CATEGORY/WOMENS,Variant,,WOMENS
+KURTIS and SUITS,Graceful women's kurtis and suits for special occasions.,/CATEGORY/WOMENS/TRADITIONAL WEAR,Variant,,WOMENS -> TRADITIONAL WEAR
+SAREES,Exquisite women's sarees for a traditional look.,/CATEGORY/WOMENS/TRADITIONAL WEAR,Variant,,WOMENS -> TRADITIONAL WEAR
+LEHENGA CHOLI,Beautiful women's lehenga choli for festive occasions.,/CATEGORY/WOMENS/TRADITIONAL WEAR,Variant,,WOMENS -> TRADITIONAL WEAR
+KIDS,Adorable and comfortable clothing and accessories for kids.,/CATEGORY,Object,,
+BOYS,Trendy and playful boys' clothing.,/CATEGORY/KIDS,Variant,, KIDS
+TSHIRTS,Cool and vibrant boys' T-shirts.,/CATEGORY/KIDS/BOYS,Variant,,KIDS -> BOYS
+SHIRTS,Smart and stylish boys' shirts.,/CATEGORY/KIDS/BOYS,Variant,,KIDS -> BOYS
+JEANS,Durable and trendy boys' jeans.,/CATEGORY/KIDS/BOYS,Variant,,KIDS -> BOYS
+GIRLS,Charming and fashionable girls' clothing.,/CATEGORY/KIDS,Variant,, KIDS
+GIRLS TOPS,Adorable girls' tops for everyday wear.,/CATEGORY/KIDS/GIRLS,Variant,,KIDS -> GIRLS
+PARTY WEAR,Stylish girls' party wear for celebrations.,/CATEGORY/KIDS/GIRLS,Variant,,KIDS -> GIRLS
+SKIRTS and SHORTS,Playful girls' skirts and shorts for a fun look.,/CATEGORY/KIDS/GIRLS,Variant,,KIDS -> GIRLS
+INFANTS,Cute and cozy clothing for adorable infants.,/CATEGORY/KIDS,Variant,, KIDS
+BODY SUITS,Comfortable body suits for infants.,/CATEGORY/KIDS/INFANTS,Variant,,KIDS -> INFANTS
+TSHIRTS and TOPS,Soft and charming T-shirts and tops for infants.,/CATEGORY/KIDS/INFANTS,Variant,,KIDS -> INFANTS
+ROMPERS and SLEEPSUIT,Cozy rompers and sleepsuits for infants.,/CATEGORY/KIDS/INFANTS,Variant,,KIDS -> INFANTS

@@ -7,7 +7,7 @@ pimcore:
                     name: WholesaleAndRetail
                     description: ''
                     creationDate: 1701598530
-                    modificationDate: 1702457259
+                    modificationDate: 1704302109
                     userOwner: 2
                     classId: clothing
                     layoutDefinitions:
@@ -424,36 +424,6 @@ pimcore:
                                                 documentTypes: {  }
                                                 width: ''
                                                 datatype: data
-                                            -
-                                                name: subCategory
-                                                title: 'Sub Category'
-                                                tooltip: 'Relation with the child objects of category master class'
-                                                mandatory: true
-                                                noteditable: true
-                                                index: false
-                                                locked: false
-                                                style: ''
-                                                permissions: null
-                                                fieldtype: manyToOneRelation
-                                                relationType: true
-                                                invisible: false
-                                                visibleGridView: true
-                                                visibleSearch: false
-                                                classes:
-                                                    -
-                                                        classes: Category
-                                                displayMode: grid
-                                                pathFormatterClass: ''
-                                                assetInlineDownloadAllowed: false
-                                                assetUploadPath: ''
-                                                allowToClearRelation: true
-                                                objectsAllowed: true
-                                                assetsAllowed: false
-                                                assetTypes: {  }
-                                                documentsAllowed: false
-                                                documentTypes: {  }
-                                                width: ''
-                                                datatype: data
                                         locked: false
                                         fieldtype: panel
                                         layout: null
@@ -635,37 +605,30 @@ pimcore:
                                                 defaultValueGenerator: ''
                                                 datatype: data
                                             -
-                                                name: price
-                                                title: Price
-                                                tooltip: 'Price of the Product'
+                                                name: actualPrice
+                                                title: 'Actual Price'
+                                                tooltip: 'Actual Price of the Product'
                                                 mandatory: true
-                                                noteditable: true
+                                                noteditable: false
                                                 index: false
                                                 locked: false
                                                 style: ''
                                                 permissions: null
-                                                fieldtype: quantityValue
+                                                fieldtype: numeric
                                                 relationType: false
                                                 invisible: false
-                                                visibleGridView: false
+                                                visibleGridView: true
                                                 visibleSearch: false
-                                                unitWidth: ''
-                                                defaultUnit: INR
-                                                validUnits:
-                                                    - INR
-                                                    - USD
-                                                    - Yen
-                                                unique: false
-                                                autoConvert: false
-                                                defaultValueGenerator: ''
-                                                width: ''
                                                 defaultValue: null
                                                 integer: false
                                                 unsigned: true
-                                                minValue: null
+                                                minValue: 0
                                                 maxValue: null
+                                                unique: false
                                                 decimalSize: null
                                                 decimalPrecision: null
+                                                width: ''
+                                                defaultValueGenerator: ''
                                                 datatype: data
                                             -
                                                 name: discount
@@ -833,8 +796,7 @@ pimcore:
                                                 invisible: false
                                                 visibleGridView: false
                                                 visibleSearch: false
-                                                allowedTypes:
-                                                    - collarType
+                                                allowedTypes: {  }
                                                 maxItems: null
                                                 border: false
                                                 datatype: data
@@ -893,8 +855,7 @@ pimcore:
                                                 invisible: false
                                                 visibleGridView: false
                                                 visibleSearch: false
-                                                allowedTypes:
-                                                    - sleeveType
+                                                allowedTypes: {  }
                                                 maxItems: null
                                                 border: false
                                                 datatype: data
@@ -913,8 +874,7 @@ pimcore:
                                                 invisible: false
                                                 visibleGridView: false
                                                 visibleSearch: false
-                                                allowedTypes:
-                                                    - neckType
+                                                allowedTypes: {  }
                                                 maxItems: null
                                                 border: false
                                                 datatype: data
@@ -933,8 +893,7 @@ pimcore:
                                                 invisible: false
                                                 visibleGridView: false
                                                 visibleSearch: false
-                                                allowedTypes:
-                                                    - customerReview
+                                                allowedTypes: {  }
                                                 maxItems: null
                                                 border: false
                                                 datatype: data

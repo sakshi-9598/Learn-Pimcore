@@ -41,6 +41,15 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: true
 
+    App\EventListener\ObjectListener:
+        tags:
+            - {
+                  name: kernel.event_listener,
+                  event: pimcore.dataobject.preUpdate,
+                  method: onObjectPreUpdate,
+              }
+            
+
     App\EventSubscriber\NotificationSubscriber:
         tags:
             - { name: "kernel.event_subscriber"

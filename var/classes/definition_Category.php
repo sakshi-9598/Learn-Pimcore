@@ -10,7 +10,6 @@
  * - categoryName [input]
  * - categoryDescription [textarea]
  * - parentCategory [select]
- * - MasterParentCategory [select]
  * - categoryImage [image]
  */
 
@@ -21,7 +20,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => 'Category',
    'description' => 'This  is a category class.',
    'creationDate' => NULL,
-   'modificationDate' => 1703326709,
+   'modificationDate' => 1703339369,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -172,34 +171,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'defaultValueGenerator' => '',
                      'width' => '',
                      'optionsProviderType' => 'class',
-                     'optionsProviderClass' => '@categoryoptionProvider',
-                     'optionsProviderData' => '',
-                  )),
-                  1 => 
-                  Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
-                     'name' => 'MasterParentCategory',
-                     'title' => 'Master Parent Category',
-                     'tooltip' => '',
-                     'mandatory' => false,
-                     'noteditable' => false,
-                     'index' => false,
-                     'locked' => false,
-                     'style' => '',
-                     'permissions' => NULL,
-                     'fieldtype' => '',
-                     'relationType' => false,
-                     'invisible' => false,
-                     'visibleGridView' => false,
-                     'visibleSearch' => false,
-                     'blockedVarsForExport' => 
-                    array (
-                    ),
-                     'defaultValue' => '',
-                     'columnLength' => 190,
-                     'dynamicOptions' => false,
-                     'defaultValueGenerator' => '',
-                     'width' => '',
-                     'optionsProviderType' => 'class',
                      'optionsProviderClass' => '@mastercategoryoptionProvider',
                      'optionsProviderData' => '',
                   )),
@@ -323,6 +294,42 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'deletedDataComponents' => 
   array (
+    0 => 
+    Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+       'name' => 'MasterParentCategory',
+       'title' => 'Master Parent Category',
+       'tooltip' => '',
+       'mandatory' => false,
+       'noteditable' => false,
+       'index' => false,
+       'locked' => false,
+       'style' => '',
+       'permissions' => NULL,
+       'fieldtype' => '',
+       'relationType' => false,
+       'invisible' => false,
+       'visibleGridView' => false,
+       'visibleSearch' => false,
+       'blockedVarsForExport' => 
+      array (
+      ),
+       'options' => 
+      array (
+        0 => 
+        array (
+          'key' => 'HOME -> HOME',
+          'value' => 5,
+        ),
+      ),
+       'defaultValue' => '',
+       'columnLength' => 190,
+       'dynamicOptions' => false,
+       'defaultValueGenerator' => '',
+       'width' => '',
+       'optionsProviderType' => 'class',
+       'optionsProviderClass' => '@mastercategoryoptionProvider',
+       'optionsProviderData' => '',
+    )),
   ),
    'blockedVarsForExport' => 
   array (

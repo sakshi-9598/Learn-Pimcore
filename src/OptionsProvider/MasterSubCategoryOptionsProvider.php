@@ -20,19 +20,26 @@ class MasterSubCategoryOptionsProvider implements SelectOptionsProviderInterface
         $currentCat= Category::getById(($object ? $object->getId() : "unknown"));
 
         $parentCategory = Category::getById($object ? $object->getParentId():"unknown");
+        $parentCategoryName = "";
+        if ($parentCategory instanceof Category){
+                    
+            $parentCategoryName = $parentCategory->getCategoryName();
+        }
 
         $masterParentCategory = Category::getById($parentCategory ? $parentCategory->getParentId():"unknown");
-
-        $masterParentCategoryName = "No Parent";
-
+        $masterParentCategoryName = "";
         if ($masterParentCategory instanceof Category){
                     
             $masterParentCategoryName = $masterParentCategory->getCategoryName();
         }
         
-
-        $fieldname = $masterParentCategoryName;
-
+        if ($masterParentCategoryName !== ""){
+            $fieldname = $masterParentCategoryName. " -> ".$parentCategoryName;
+        }
+        else{
+            $fieldname = $masterParentCategoryName. " ".$parentCategoryName; 
+        }
+    
         $options  = array(
             array("key" => $fieldname , "value" => 5)
             );

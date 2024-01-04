@@ -55,24 +55,39 @@ class ProductController extends FrontendController
             foreach ($products as $product) {
                 // Extract relevant product information and build an array.
                 $productData[] = [
-                    'Sku' => $product->getSku(),
-                // 'Product Name' => $product->getProductName(),
-                // 'Product Description' => $product->getProductDescription(),
-                // 'Price' => $product->getPrice(),
-                // 'Calculated Price' => $product->getDiscountedPrice(),
-                // 'Country' => $product->getCountryOfOrigin(),
-                // 'Length' => $product->getLength()->__toString(),
-                // 'Width' => $product->getWidth()->__toString(),
-                // 'Weight' => $product->getWeight()->__toString(),
-                // 'Color' => $product->getColor()->getHex(),
-                // 'Brand' => implode($product->getBrand()),
-                // 'Category' => implode($product->getCategory()),
-                // 'SubCategory' => implode($product->getSubCategory()),
-                // 'Store' => implode($product->getStore()),
-                // 'Image' => $product->getDisplayImage()->getDimensions(),
-                // 'Generic Name' => $product->getGenericName(),
-                // 'Material Used' => $product->getMaterialUsed(),
-                // 'Manufacturer Address' => $product->getManufacturerAddress()
+
+                    'SKU' => $product->getSku(),
+                    'Name_EN' => $product->getProductName('en'),
+                    // 'Name_DE' => $product->getName('de'),
+                    // 'Name_ES' => $product->getName('es'),
+                    'Description_EN' => $product->getProductDescription('en'),
+                    // 'Description_DE' => $product->getDescription('de'),
+                    // 'Description_ES' => $product->getDescription('es'),
+                    'Category' => $product->getCategory()->getKey(),
+                    'Country' => $product->getCountryOfOrigin(),
+                    'Discount' => $product->getDiscount(),
+                    'DiscountedPrice' => $product->getDiscountedPrice(),
+
+                    // 'Color' => $product->getColor()->getHex(),
+
+                    'Brand' => $product->getBrand()->getKey(),
+                    'Store' => $product->getStore()[0]->getKey(),
+
+                    'Stock value'=> $product->getInStockValue(),
+
+                    'ActualPrice' => $product->getActualPrice()->__toString(),
+                    'Weight' => $product->getWeight()->__toString(),
+                    'Length' => $product->getLength()->__toString(),
+                    'Width' => $product->getWidth()->__toString(),
+
+                    'Manufacturer Address' => $product->getManufacturerAddress(),
+                    'Material Used' => $product->getMaterialUsed(),
+                
+                    'Season' => $product->getSeason()?->getSeason()?->getSeason(),
+                    'Numeric Size' => $product->getNumericSize()?->getNumericSize()?->getNumericSize(),
+                    'Generic Size' => $product->getGenericSize()?->getGenericSize()?->getGenericSize(),
+                    'Pattern' => $product->getClothingPattern()?->getPattern()?->getPatternStyle(),
+                    'Pattern' => $product->getClothingPattern()?->getPattern()?->getDesignStyle(),
                 ];
             }
         }

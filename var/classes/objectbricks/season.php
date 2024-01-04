@@ -103,7 +103,7 @@ return Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
              'defaultValueGenerator' => '',
              'width' => '',
              'optionsProviderType' => 'configure',
-             'optionsProviderClass' => '',
+             'optionsProviderClass' => 'Pimcore\\Bundle\\CoreBundle\\OptionsProvider\\SelectOptionsOptionsProvider',
              'optionsProviderData' => '',
           )),
         ),

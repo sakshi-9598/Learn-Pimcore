@@ -213,7 +213,7 @@ class ImportClothingCommand extends AbstractCommand
                 // $dom = Carbon::createFromFormat('Y-m-d' , $row[array_search('Date of Manufacturing', $headers)]);
                 // $product->setDateOfManufacturing($dom);
 
-                // // COLOR
+                // 
                 // $rgbaColor = new RgbaColor;
                 // $rgbaColor->setHex($row[array_search('Color', $headers)]);
                 // $product->setColor($rgbaColor);
@@ -256,19 +256,6 @@ class ImportClothingCommand extends AbstractCommand
 
                 //////----------------------------------------------------------------------------------//////////
 
-                // //     // Check if the column is a Quantity Value
-                //     if  ($csvColumn == 'Weight'){
-                //         $index = array_search('Weight', $headers);
-                //         $value = $row[$index];
-                //         var_dump($value);  //"12 g"
-
-                //         list($val, $unitAbb) = explode(' ', $value);
-                //         var_dump($val);
-                //         var_dump($unitAbb);
-                //         $quantityValue = new QuantityValue($val,$unitAbb);
-
-                //         $product->setWeight($quantityValue);
-                //     }
                 $product->save();
             }
         }

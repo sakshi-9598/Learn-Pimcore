@@ -2,7 +2,8 @@
 
 /**
  * Fields Summary:
- * - pattern [input]
+ * - patternStyle [input]
+ * - designStyle [input]
  */
 
 return Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
@@ -42,9 +43,39 @@ return Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
         array (
           0 => 
           Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-             'name' => 'pattern',
-             'title' => 'Pattern',
+             'name' => 'patternStyle',
+             'title' => 'Pattern Style',
              'tooltip' => 'pattern of the product',
+             'mandatory' => false,
+             'noteditable' => false,
+             'index' => false,
+             'locked' => false,
+             'style' => '',
+             'permissions' => NULL,
+             'fieldtype' => '',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValue' => NULL,
+             'columnLength' => 190,
+             'regex' => '',
+             'regexFlags' => 
+            array (
+            ),
+             'unique' => false,
+             'showCharCount' => false,
+             'width' => '',
+             'defaultValueGenerator' => '',
+          )),
+          1 => 
+          Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
+             'name' => 'designStyle',
+             'title' => 'Design Style',
+             'tooltip' => 'Design of the product',
              'mandatory' => false,
              'noteditable' => false,
              'index' => false,
@@ -103,7 +134,7 @@ return Pimcore\Model\DataObject\Objectbrick\Definition::__set_state(array(
     0 => 
     array (
       'classname' => 'Clothing',
-      'fieldname' => 'pattern',
+      'fieldname' => 'clothingPattern',
     ),
   ),
    'activeDispatchingEvents' => 

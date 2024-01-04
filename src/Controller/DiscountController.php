@@ -10,9 +10,11 @@ class DiscountController implements CalculatorClassInterface
 {
     public function compute(Concrete $object, CalculatedValue $context): string
     {
-        if ($context->getFieldname() == "discountedPrice") {
-          
-            return $object->getPrice() - ($object->getPrice()*$object->getDiscount()/100);
+        if (($context->getFieldname() == "discountedPrice") or ($context->getFieldname() == "sellingprice")) {
+            if ($object->getActualPrice()){
+                return ((float)($object->getActualPrice()->getValue()) - ($object->getActualPrice()->getValue() *$object->getDiscount()/100));
+            }
+            return "";
             // return 10;
             
         } else {
