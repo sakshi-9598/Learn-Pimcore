@@ -18,10 +18,10 @@ class ProductValidationSubscriber{
         $object = $event->getObject();
         if ($object instanceof Clothing){
             $this->validateSku($object);
-            $this->validateSubcategory($object);
-            $this->validateGallery($object);
-            // $this->validatePrice($object);
-            // $this->validateSockValue($object);
+            // $this->validateSubcategory($object);
+            // $this->validateGallery($object);
+            $this->validatePrice($object);
+            $this->validateSockValue($object);
         }
     }
 
@@ -53,7 +53,7 @@ class ProductValidationSubscriber{
     private function validateSku($object)
     {
         $sku = $object->getSku();
-        if ($sku == ''){
+        if ($sku === ''){
             throw new ValidationException('Empty SKU. Please fill it');
         }
     }

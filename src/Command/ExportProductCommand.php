@@ -27,7 +27,7 @@ class ExportProductCommand extends AbstractCommand
         $productListing = new Clothing\Listing();
         $productListing->load();
     
-        $data = [['SKU', 'English Name', 'German Name', 'Spanish Name', 'English Description', 'German Description','Spanish Description' ]];
+        $data = [];
     
         foreach ($productListing as $product) {
             $productData = [
@@ -121,7 +121,10 @@ class ExportProductCommand extends AbstractCommand
         }
  
         foreach ($data as $row) {
-            fputcsv($output, $row);
+            foreach($row as $key => $value){
+                fputcsv($output,["$key => $value"]);
+            }
+            fwrite($output, PHP_EOL);
         }
  
         rewind($output); // Rewind the stream to the beginning

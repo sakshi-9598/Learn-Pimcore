@@ -41,6 +41,9 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: true
 
+    # config/services.yaml
+
+
     App\EventListener\ObjectListener:
         tags:
             - {
@@ -56,9 +59,13 @@ services:
                 # event: "pimcore.dataobject.preUpdate",
                 # mehod: 'onObjectPreUpdate' 
               }
-    App\EventSubscriber\ProductValidationSubscriber:
-        tags:
-            - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onPreUpdate }
+    # App\EventSubscriber\ProductValidationSubscriber:
+    #     tags:
+    #         - { 
+    #             name: kernel.event_subscriber, 
+    #             event: pimcore.dataobject.preUpdate, 
+    #             method: onPreUpdate 
+    #           }
 #
     # CONTROLLERS
     #
@@ -96,6 +103,19 @@ services:
     App\Command\:
         resource: '../src/Command/*'
         tags: [ 'console.command' ]
+
+
+    # csv path 
+    App\Command\ImportProductCommand:
+        class: 'App\Command\ImportProductCommand'
+        arguments:
+            $csvFilePath: "/var/www/PIMPROJECTS/myclothing/finalcloth.csv"
+
+
+
+    App\Service\:
+        resource: '../src/Service'
+
 
 
 

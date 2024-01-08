@@ -23,7 +23,6 @@ class ObjectListener
     {
         if ($e instanceof DataObjectEvent) {
             $object = $e->getObject();
-            // dd($object);
             if($object  instanceof Clothing and  $object->getSku() !== ""){
  
                 $images = $object->getImages();
@@ -41,7 +40,11 @@ class ObjectListener
                     $images->setItems($filteredImages);
                 }
 
-                // 
+                // $stock = $object->getInStockValue();
+                // if ($stock < 0){
+                //     throw new ValidationException("Trying to assign negative value.");
+                // }
+
         }
     }
     }
