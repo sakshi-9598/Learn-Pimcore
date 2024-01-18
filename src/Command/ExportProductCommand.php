@@ -24,9 +24,30 @@ class ExportProductCommand extends AbstractCommand
  
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+        // Use fgets to get user input
+        $output->write('Enter filename, which you want to give to your csv file : ');
+        $filename = trim(fgets(STDIN));
+        if ($filename === ''){
+            $filename = 'exported';
+        }
+        
+        $output->writeln('Note -> This filename include date and time by default, Do you want to continue with this format: ');
+        $userInput = trim(fgets(STDIN));
+        $lowercaseInput = strtolower($userInput);
+        // Check if the user entered yes or no
+        if ($lowercaseInput === 'yes' || $lowercaseInput === 'y') {
+            $timestamp = date('dFY_His');
+            $finalFileName = $timestamp.'_'.$filename.'.csv';
+        } elseif ($lowercaseInput === 'no' || $lowercaseInput === 'n') {
+            $finalFileName = $filename.'.csv';
+        } else {
+            $output->writeln("Invalid input.");
+            $finalFileName = "";
+        }
+
         $productListing = new Clothing\Listing();
         $productListing->load();
-    
         $data = [];
     
         foreach ($productListing as $product) {
@@ -75,22 +96,20 @@ class ExportProductCommand extends AbstractCommand
     
             $data[] = $productData;
         }
-    
         // Create a CSV string
         $csv = $this->arrayToCsv($data);
     
         // Define the file path to save the CSV
-        $timestamp = date('Ymd_His');
+        
         $csvFilePath = '/var/www/PIMCLONE/public/bundles/assets/exported_data.csv';
     
         // Check if the directory exists, and create it if not
         if (!is_dir(dirname($csvFilePath))) {
             mkdir(dirname($csvFilePath), 0755, true);
         }
-    
         // Save the CSV to a file
         file_put_contents($csvFilePath, $csv);
-    
+
         // Save the CSV file as an asset
         $folderPath = '/EXPORTSCSV';
         $folder = Folder::getByPath($folderPath);
@@ -105,10 +124,11 @@ class ExportProductCommand extends AbstractCommand
         $asset = new Asset();
         $asset->setParentId($folder->getId());
         $asset->setData(file_get_contents($csvFilePath));
-        $asset->setFilename($timestamp . 'exported_data.csv');
-        $asset->save();
-    
-        $this->output->writeln('Data exported to CSV and saved in assets.');
+        if ($finalFileName !== ''){
+            $asset->setFilename($finalFileName);
+            $asset->save();
+            $this->output->writeln('Data exported to CSV and saved in assets.');
+        } 
         return 0;
     }
     

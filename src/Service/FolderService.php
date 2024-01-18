@@ -36,12 +36,10 @@ class FolderService
                     $folder = $existingFolder;
                 }
                 else{
-                    // var_dump($folderName);
                     $folder = new Folder();
                     $folder->setKey($folderName);  //CLOTHING
                     $folder->setType(Folder::OBJECT_TYPE_FOLDER);
                     $folder->setParentId($parentPlaceId);
-                    // var_dump($folder->getId());
                 }
                 $folder->save();
                 $parentPlaceId = $folder->getId();   //CLOTHING ID

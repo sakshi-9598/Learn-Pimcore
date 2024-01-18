@@ -105,11 +105,30 @@ services:
         tags: [ 'console.command' ]
 
 
-    # csv path 
+    # product csv path 
     App\Command\ImportProductCommand:
         class: 'App\Command\ImportProductCommand'
         arguments:
             $csvFilePath: "/var/www/PIMPROJECTS/myclothing/finalcloth.csv"
+
+
+    # category csv path 
+    App\Command\ImportCategoryCommand:
+        class: 'App\Command\ImportCategoryCommand'
+        arguments:
+            $categoryCsvFilePath: "/var/www/PIMPROJECTS/myclothing/subcategory.csv"
+
+    # store csv path
+    App\Command\ImportStoreCommand:
+        class: 'App\Command\ImportStoreCommand'
+        arguments:
+            $storeCsvFilePath: "/var/www/PIMPROJECTS/myclothing/store.csv"
+
+    # brand csv path
+    App\Command\ImportBrandCommand:
+        class: 'App\Command\ImportBrandCommand'
+        arguments:
+            $brandCsvFilePath: "/var/www/PIMPROJECTS/myclothing/brand.csv"
 
 
 

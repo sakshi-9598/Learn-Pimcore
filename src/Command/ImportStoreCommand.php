@@ -6,13 +6,24 @@ use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use \Pimcore\Model\DataObject\Store;
-use Pimcore\Model\DataObject\Folder;
+
+use App\Service\FolderService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class ImportStoreCommand extends AbstractCommand
 {
-    protected function configure(): void
-    {
+    private $storeCsvFilePath;
+    private TranslatorInterface $translator;
+
+    public function __construct(TranslatorInterface $translator, $storeCsvFilePath){
+
+        parent::__construct();
+        $this->storeCsvFilePath = $storeCsvFilePath;
+        $this->translator = $translator;
+    }
+
+    protected function configure(): void{
         $this
             ->setName('importstore')
             ->setDescription('Import data from CSV file to Pimcore objects');
@@ -20,49 +31,32 @@ class ImportStoreCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $csvFilePath = "/var/www/PIMPROJECTS/myclothing/store.csv"; // file path
-        $csv = array_map('str_getcsv', file($csvFilePath));
-        // var_dump($csv);
+        $csv = array_map('str_getcsv', file($this->storeCsvFilePath));
         $headers = array_shift($csv);
-        // var_dump($headers);
 
         $columnMapping = [
-            'StoreName' => 'setStoreName', 
+            'StoreName' => 'setStoreName',
             'StoreAddress' => 'setStoreAddress', 
             'Rating' => 'setRating',
         ];
+
+        $total = 0;
         
-        
-       
         foreach ($csv as $row) {
-            // var_dump($row);
 
             $parentPath = "/STORE";
 
             //Check if the FOLDER already exists or not
 
-            $existingFolder = Folder::getByPath($parentPath);
-            // var_dump($existingFolder);   #INITIALLY NOT PRESENT -> NULL
-
-            if ($existingFolder instanceof Folder){
-                // $folderId = $existingFolder->getId();
-                $folder = $existingFolder;
-            }
-            else{
-                // Folder does not exist, create a new one
-                $folder = new Folder();
-                // var_dump($parentPath);
-                $folderName = str_replace("/","",$parentPath);
-                // // var_dump($folderName);
-                $folder->setKey($folderName);
-                $folder->setParentId(1);   
-            }
+            $folder=FolderService::createFolder($parentPath);
             $folder->save();
 
             //NOW INSIDE FOLDER MAKE OUR Store OBJECTS
             // CHECK if Objects are already  exists or not
+            $total += 1;
+            $storeName = $row[array_search("StoreName", $headers)];
 
-            $existingStore = Store::getByPath($parentPath.'/'.$row[array_search('StoreName', $headers)] );
+            $existingStore = Store::getByPath($parentPath.'/'.$storeName );
 
             if ($existingStore instanceof Store){
                     
@@ -70,7 +64,6 @@ class ImportStoreCommand extends AbstractCommand
                 }
                 else{
                     $store = new Store();
-                    $storeName = $row[0];
                     $store->setKey($storeName);
                     $store->setParentId($folder->getId());
                 }    
@@ -88,7 +81,10 @@ class ImportStoreCommand extends AbstractCommand
             
             $store->save();      
         }
-        $output->writeln("ALL Objects of Store class are Import successfully...!");
+
+        $key = 'store_final_message';
+        $final_msg = $this->translator->trans($key, ['total' => $total]). "\n";
+        $output->writeln($final_msg);
         return 0;
     }     
 }

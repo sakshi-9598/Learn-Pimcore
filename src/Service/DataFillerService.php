@@ -4,8 +4,6 @@ namespace App\Service;
 
 use Pimcore\Model\DataObject;
 
-use Pimcore\Model\DataObject\Clothing;
-
 use Pimcore\Model\Asset\Image;
 use Pimcore\Model\DataObject\Data\ImageGallery;
 use Pimcore\Model\DataObject\Data\Hotspotimage;

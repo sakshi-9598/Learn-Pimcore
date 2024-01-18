@@ -5,14 +5,28 @@ namespace App\Command;
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Uid\Uuid;
 use \Pimcore\Model\DataObject\Brand;
-use Pimcore\Model\DataObject\Folder;
+
+use App\Service\FolderService;
+
 use Pimcore\Model\Asset\Image;
+
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 
 class ImportBrandCommand extends AbstractCommand
 {
+    private $brandCsvFilePath;
+    private TranslatorInterface $translator;
+
+    public function __construct(TranslatorInterface $translator, $brandCsvFilePath){
+
+        parent::__construct();
+        $this->brandCsvFilePath = $brandCsvFilePath;
+        $this->translator = $translator;
+    }
+
     protected function configure(): void
     {
         $this
@@ -22,11 +36,8 @@ class ImportBrandCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $csvFilePath = "/var/www/PIMPROJECTS/myclothing/brand.csv"; // Corrected file path
-        $csv = array_map('str_getcsv', file($csvFilePath));
-        // var_dump($csv);
+        $csv = array_map('str_getcsv', file($this->brandCsvFilePath));
         $headers = array_shift($csv);
-        // var_dump($headers);
 
         $columnMapping = [
             'BrandName' => 'setBrandName', 
@@ -35,62 +46,39 @@ class ImportBrandCommand extends AbstractCommand
             'BrandLogo' => 'setBrandLogo'
         ];
         
-        
-       
+        $total = 0;
+
         foreach ($csv as $row) {
-            // var_dump($row);
-            // var_dump($isObject);     #TRUE/FALSE
 
             $parentPath = "/BRAND";
-
             //Check if the FOLDER already exists or not
 
-            $existingFolder = Folder::getByPath($parentPath);
-            // var_dump($existingFolder);   #INITIALLY NOT PRESENT -> NULL
-
-            if ($existingFolder instanceof Folder){
-                // $folderId = $existingFolder->getId();
-                $folder = $existingFolder;
-            }
-            else{
-                // Folder does not exist, create a new one
-                $folder = new Folder();
-                // var_dump($parentPath);
-                $folderName = str_replace("/","",$parentPath);
-                // // var_dump($folderName);
-                $folder->setKey($folderName);
-                $folder->setParentId(1);
-                
-            }
+            $folder=FolderService::createFolder($parentPath);
+            $folder->save();
 
             //NOW INSIDE FOLDER MAKE OUR BRAND OBJECTS
             // CHECK if Objects are already  exists or not
-
-            $existingBrand = Brand::getByPath($parentPath.'/'.$row[array_search('BrandName', $headers)] );
+            $total += 1;
+            $brandName = $row[array_search("BrandName", $headers)];
+            $existingBrand = Brand::getByPath($parentPath.'/'.$brandName);
 
             if ($existingBrand instanceof Brand){
-                    
                 $brand = $existingBrand;
                 }
-                else{
-                    $brand = new Brand();
-                    $brandName = $row[0];
-                    $brand->setKey($brandName);
-                    $brand->setParentId($folder->getId());
-                }    
-            
-            //AFTER OBJECTS ARE CREATED SUCCESSFULLY..YOU NEED TO FILL THE DATA
+            else{
+                $brand = new Brand();
+                $brand->setKey($brandName);
+                $brand->setParentId($folder->getId());
+            }    
 
-    
+            //AFTER OBJECTS ARE CREATED SUCCESSFULLY..YOU NEED TO FILL THE DATA
             foreach ($columnMapping as $csvColumn => $setterMethod){
                 // csvColumn = BrandName
                 // setterMethod =  setBrandName
                 $index = array_search($csvColumn, $headers);
                 $value = $row[$index];
 
-                // Check if the column is an logo column
                 if ($csvColumn === 'BrandLogo') {
-                    // Handle logo olumn
                     $imageId = $value;
 
                     if (!empty($imageId)) {
@@ -110,10 +98,12 @@ class ImportBrandCommand extends AbstractCommand
                     $brand->$setterMethod($value);
                 }
             }
-            $folder->save();
             $brand->save();      
         }
-        $output->writeln("ALL Objects of BRAND class are Import successfully...!");
+
+        $key = 'brand_final_message';
+        $final_msg = $this->translator->trans($key, ['total' => $total]). "\n";
+        $output->writeln($final_msg);
         return 0;
     }     
 }

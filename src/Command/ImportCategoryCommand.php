@@ -5,62 +5,29 @@ namespace App\Command;
 use Pimcore\Console\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Uid\Uuid;
 use \Pimcore\Model\DataObject\Category;
-use Pimcore\Model\DataObject\Folder;
+use App\Service\FolderService;
 use Pimcore\Model\Asset\Image;
+
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class ImportCategoryCommand extends AbstractCommand
 {
+    private $categoryCsvFilePath;
+    private TranslatorInterface $translator;
+
+    public function __construct(TranslatorInterface $translator, $categoryCsvFilePath){
+
+        parent::__construct();
+        $this->categoryCsvFilePath = $categoryCsvFilePath;
+        $this->translator = $translator;
+    }
+
     protected function configure(): void{
         $this
             ->setName('importcategory')
             ->setDescription('Import data from CSV file to Pimcore objects');
-    }
-
-    public function createFolder($parentPath):Folder{
-
-        //Check if the FOLDER already exists or not
-
-        $existingFolder = Folder::getByPath($parentPath);
-        // var_dump($existingFolder);   #INITIALLY NOT PRESENT -> NULL
-
-        if ($existingFolder instanceof Folder){
-            // $folderId = $existingFolder->getId();
-            $folder = $existingFolder;
-        }
-        else{
-            // Folder does not exist, create a new one of any number of levels
-            // var_dump($parentPath);  ///Category/MENS/FORMAL WEAR/
-            $parts = explode('/', $parentPath);
-            $parentPlaceId = 1;
-            $prev = NULL;
-            for ($i = 1; $i < sizeof($parts); $i++) {
-                $folderName =  $parts[$i];  //1:Category, 2:MENS
-                // var_dump($folderName);
-
-                // Check if the folder is already exists or not
-                $existingFolder = Folder::getByPath($prev.'/'.$folderName);  //Category"
-                
-                if ($existingFolder instanceof Folder){
-                    // $folderId = $existingFolder->getId();
-                    $folder = $existingFolder;
-                }
-                else{
-                    // var_dump($folderName);
-                    $folder = new Folder();
-                    $folder->setKey($folderName);  //Category
-                    $folder->setParentId($parentPlaceId);
-                    // var_dump($folder->getId());
-                }
-                $folder->save();
-                $parentPlaceId = $folder->getId();   //Category ID
-                $prev = $folder->getPath().$folderName;  //CategoryPATH
-                // var_dump($prev);   // 1:/Category" , 2:/Category/MENS" , 3: "/Category/MENS/CASUAL WEAR"
-            }  
-        }
-        return $folder;
     }
 
     //Object exists or not
@@ -136,12 +103,10 @@ class ImportCategoryCommand extends AbstractCommand
         return $category;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output){
-        $csvFilePath = "/var/www/PIMPROJECTS/myclothing/subcategory.csv"; // Corrected file path
-        $csv = array_map('str_getcsv', file($csvFilePath));
-        // var_dump($csv);
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $csv = array_map('str_getcsv', file($this->categoryCsvFilePath));
         $headers = array_shift($csv);
-        // var_dump($headers);
 
         $columnMapping = [
             'CategoryName' => 'setCategoryName', 
@@ -151,7 +116,7 @@ class ImportCategoryCommand extends AbstractCommand
         ];
         
         
-       
+        $total = 0;
         foreach ($csv as $row) {
             $type = $row[array_search('Type', $headers)];
             $isObject = ($type === 'Object');
@@ -161,9 +126,11 @@ class ImportCategoryCommand extends AbstractCommand
             // var_dump($parentPath);    #"/CATEGORY" , /CATEGORY/MENS"
             $pdtName = $row[array_search('CategoryName', $headers)];
             
+            $total += 1;
             if ($isObject == True){
 
-                $folder = $this ->createFolder($parentPath);
+                $folder=FolderService::createFolder($parentPath);
+                    
                 //NOW INSIDE FOLDER MAKE OUR OBJECTS
                 $category = $this->createObjects($parentPath, $folder, $pdtName);
             }
@@ -178,7 +145,9 @@ class ImportCategoryCommand extends AbstractCommand
             $category = $this-> fillData($columnMapping,$row, $headers, $category);
             $category->save();      
         }
-        $output->writeln("Import successful!");
+        $key = 'category_final_message';
+        $final_msg = $this->translator->trans($key, ['total' => $total]). "\n";
+        $output->writeln($final_msg);
         return 0;
     }     
 }
